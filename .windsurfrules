@@ -1,0 +1,84 @@
+Every time you choose to apply a rule(s), explicitly state the rule(s) in the response. You can abbreviate the rule description to a single word or short phrase.
+
+# High-Level Project Goals
+- Migrate the vim mode navigation features from the Roam Toolkit v2 Chrome extension to a new standalone v3 Chrome extension.
+- Follow [Chrome's official migration guide](https://developer.chrome.com/docs/extensions/develop/migrate), to address these key changes:
+- Service Workers replace Background Scripts
+- Persistent state handling: We must use storage APIs instead of in-memory variables
+- Event-based architecture: Implement proper event listeners and message passing
+- Context invalidation: Handle potential service worker termination and restoration
+
+# Project Structure
+- The code for the original Roam Toolkit can be found in the folder `roam-toolkit` in the root directory of the workspace.
+- The new Chrome extension code will be in the folder `chrome-ext-v3` in the root directory of the workspace.
+- All new code should be added to the `chrome-ext-v3` folder. Do not modify any files in the `roam-toolkit` folder.
+- Structure of the `chrome-ext-v3` folder:
+├── .github/                      # GitHub workflows and CI configuration
+├── dist/                         # Build output directory (generated)
+├── public/                       # Static assets
+├── src/                          # Source code
+│   ├── background/               # Service worker scripts
+│   ├── content/                  # Content scripts
+│   ├── popup/                    # Popup UI
+│   ├── options/                  # Options page
+│   ├── components/               # Shared React components
+│   ├── hooks/                    # Custom React hooks
+│   ├── types/                    # TypeScript type definitions
+│   ├── utils/                    # Shared utilities
+│   ├── constants/                # Shared constants
+│   └── index.tsx                 # Main entry point for UI
+├── __tests__/                    # Test files
+│   ├── unit/                     # Unit tests
+│   ├── integration/              # Integration tests
+│   └── e2e/                      # End-to-end tests
+├── __mocks__/                    # Jest mocks
+├── jest.config.js                # Jest configuration
+├── tsconfig.json                 # TypeScript configuration
+├── webpack.config.js             # Webpack configuration
+├── package.json                  # Dependencies and scripts
+└── README.md                     # Project documentation
+
+# Test Driven Development Workflow
+- Only work on one feature at a time.
+- Before creating a feature, first search the project to see if there are "end to end" tests already written for it.
+- If no tests has develop a test that reflects the desired functionality, anticipating its failure since the feature isn't implemented yet. Run the type checker `bun run check` to identify and resolve any type errors. Confirm with the user before proceeding.
+- Write the simplest code necessary in TypeScript that will make the failing test pass.
+- Run the type checker with `bun run check` to make sure that there are no type errors.
+- Run the relevant test with `bun run test` until the test for this feature passes. Do not move forward with other features until all tests pass.
+- Refactor the current feature to make it better without changing the behavior of the code if necessary.
+- If the tests do not pass after 3 attempts to fix them stop and ask the user for directions.
+
+# General Code Style & Formatting
+- Use English for all code and documentation.
+- Always declare the type of each variable and function (parameters and return value).
+- Use functional and declarative code programming patterns; avoid classes where possible.
+- Use descriptive variable names with auxiliary verbs (e.g., `isLoading`, `hasError`).
+- Avoid using `any` where possible. If `any` is necessary add a comment explaining why it was necessary.
+- Create necessary types.
+- Use JSDoc to document public classes and methods.
+- Don't leave blank lines within a function.
+- One export per file.
+
+# Naming Conventions
+- Use PascalCase for classes.
+- Use camelCase for variables, functions, and methods.
+- Use kebab-case for file and directory names.
+- Use UPPERCASE for environment variables.
+- Avoid magic numbers and define constants.
+
+# Functions & Logic
+- Keep functions short and single-purpose (<20 lines).
+- Avoid deeply nested blocks by:
+- Using early returns.
+- Extracting logic into utility functions.
+- Use higher-order functions (map, filter, reduce) to simplify logic.
+- Use arrow functions for simple cases (<3 instructions), named functions otherwise.
+- Use default parameter values instead of null/undefined checks.
+- Use RO-RO (Receive Object, Return Object) for passing and returning multiple parameters.
+
+# Data Handling
+- Avoid excessive use of primitive types; encapsulate data in composite types.
+- Avoid placing validation inside functions—use classes with internal validation instead.
+- Prefer immutability for data:
+- Use readonly for immutable properties.
+- Use as const for literals that never change.
