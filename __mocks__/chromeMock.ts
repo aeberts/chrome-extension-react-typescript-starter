@@ -1,4 +1,4 @@
-// src/__mocks__/chromeMock.ts
+// __mocks__/chromeMock.ts
 import sinonChrome from 'sinon-chrome';
 
 // Type assertion to handle incompatibilities

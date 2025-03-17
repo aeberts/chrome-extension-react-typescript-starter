@@ -63,10 +63,10 @@
     "setupFilesAfterEnv": ["<rootDir>/__tests__/setup/setupTests.ts"],
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "ts-jest",
-      "^.+\\.css$": "<rootDir>/src/__mocks__/styleMock.js"
+      "^.+\\.css$": "<rootDir>/__mocks__/styleMock.js"
     },
     "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
     },
     "coverageReporters": ["text", "html"],
     "testMatch": [

@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import '../../../__tests__/setup/setupServiceWorkerTests';
-import chrome from '../../../src/__mocks__/chromeMock';
+import chrome from '../../../__mocks__/chromeMock';
 
 // We need to load the background script after the chrome mock is set up
 // This is typically done by importing the module or requiring it
