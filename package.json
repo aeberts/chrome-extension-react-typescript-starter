@@ -60,7 +60,7 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+    "setupFilesAfterEnv": ["<rootDir>/__tests__/setup/setupTests.ts"],
     "transform": {
       "^.+\\.(js|jsx|ts|tsx)$": "ts-jest",
       "^.+\\.css$": "<rootDir>/src/__mocks__/styleMock.js"
@@ -70,7 +70,7 @@
     },
     "coverageReporters": ["text", "html"],
     "testMatch": [
-      "**/__tests__/**/*.[jt]s?(x)",
+      "**/__tests__/**/*.test.[jt]s?(x)",
       "**/?(*.)+(spec|test).[jt]s?(x)"
     ],
     "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
@@ -78,6 +78,9 @@
       "ts-jest": {
         "tsconfig": "tsconfig.json"
       }
-    }
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
   }
 }

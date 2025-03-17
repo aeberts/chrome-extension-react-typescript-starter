@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import './setupServiceWorkerTests';
-import chrome from './__mocks__/chromeMock';
+import '../../../__tests__/setup/setupServiceWorkerTests';
+import chrome from '../../../src/__mocks__/chromeMock';
 
 // We need to load the background script after the chrome mock is set up
 // This is typically done by importing the module or requiring it
@@ -11,7 +11,7 @@ const loadBackgroundScript = () => {
   // we need to use the actual file path relative to where tests run
   jest.isolateModules(() => {
     // Using require to dynamically load the script in the test environment
-    require('../public/background.js');
+    require('../../../public/background.js');
   });
 };
 

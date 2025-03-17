@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Hello from "./Hello";
+import Hello from "../../../src/components/Hello";
 
 describe("Hello", () => {
   it("renders greeting with the provided person name", () => {

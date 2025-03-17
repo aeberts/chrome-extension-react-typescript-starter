@@ -38,6 +38,13 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the re
 ├── package.json                  # Dependencies and scripts
 └── README.md                     # Project documentation
 
+# Tech Stack
+- [Bun](https://bun.sh) - A fast, all-in-one JavaScript runtime
+- [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Jest](https://jestjs.io/) - A testing framework
+
+
 # Test Driven Development Workflow
 - Only work on one feature at a time.
 - Before creating a feature, first search the project to see if there are "end to end" tests already written for it.

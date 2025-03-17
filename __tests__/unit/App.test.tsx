@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "../../src/popup/App";
 
 describe("App", () => {
   it("renders the main heading", () => {
