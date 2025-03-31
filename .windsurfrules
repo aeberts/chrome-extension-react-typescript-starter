@@ -47,6 +47,7 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the re
 
 # Test Driven Development Workflow
 - Only work on one feature at a time.
+- Run tests with the command `bun run test`
 - Before creating a feature, first search the project to see if there are "end to end" tests already written for it.
 - If no tests has develop a test that reflects the desired functionality, anticipating its failure since the feature isn't implemented yet. Run the type checker `bun run check` to identify and resolve any type errors. Confirm with the user before proceeding.
 - Write the simplest code necessary in TypeScript that will make the failing test pass.
