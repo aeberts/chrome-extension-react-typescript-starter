@@ -9,19 +9,45 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the re
 - Context invalidation: Handle potential service worker termination and restoration
 
 # Feature List
-- Implement core service worker logic for handling extension events.
-- Develop content scripts to interact with the Roam Research DOM.
-- Establish message passing between content scripts and the service worker.
-- Create a mechanism (e.g., popup button) to toggle vim mode on/off.
-- Implement state persistence using chrome.storage for vim mode enabled/disabled status.
-- Add basic cursor movement between blocks using vim keys (e.g., j, k in normal mode).
-- Implement returning to normal mode (e.g., via Escape key from other modes).
-- Implement insert mode activation and handling within blocks.
-- Implement block selection/visual mode functionality.
-- Add block manipulation actions (e.g., delete, yank, paste in normal/visual mode).
-- Develop an options page for potential vim mode customization.
-- Ensure context invalidation is handled gracefully (service worker termination/restart).
-- Set up end-to-end tests for core vim navigation scenarios (as per TDD workflow).
+## Implement core service worker logic for handling extension events.
+### File & Manifest Setup:
+- Verify/Create the src/background/ directory. Rule: Project Structure.
+- Create the main service worker file: src/background/service-worker.ts. Rule: Naming Conventions.
+- Verify/Create the public/manifest.json file.
+- Register the service worker in manifest.json under the background key, pointing to the compiled JavaScript output (e.g., dist/background/service-worker.js - the exact path depends on your Webpack config).
+### Basic Lifecycle Listener (onInstalled):
+- (TDD) Write a test (integration or unit, depending on test setup) to verify that an onInstalled listener is successfully registered and perhaps logs a message upon simulated installation. This test should initially fail.
+Implement the chrome.runtime.onInstalled.addListener in service-worker.ts. Add a simple console.log inside it to confirm execution (e.g., "Service Worker Installed").
+### Basic Message Listener (onMessage):
+- (TDD) Write a test to verify that an onMessage listener is registered and can receive a simple message. This test should initially fail.
+- Define a basic message interface (e.g., in src/types/messages.d.ts) for structure. Rule: Create necessary types.
+- Implement the chrome.runtime.onMessage.addListener in service-worker.ts. Add a simple console.log to show received messages. 
+### Initial Context Invalidation Consideration:
+Add comments within the service worker acknowledging that it's non-persistent and state needs to be managed externally (e.g., using chrome.storage). This prepares for later features. Rule: Context invalidation awareness.
+## Develop content scripts to interact with the Roam Research DOM.
+TBD
+## Establish message passing between content scripts and the service worker.
+TBD
+## Create a mechanism (e.g., popup button) to toggle vim mode on/off.
+TBD
+## Implement state persistence using chrome.storage for vim mode enabled/disabled status.
+TBD
+## Add basic cursor movement between blocks using vim keys (e.g., j, k in normal mode).
+TBD
+## Implement returning to normal mode (e.g., via Escape key from other modes).
+TBD
+## Implement insert mode activation and handling within blocks.
+TBD
+## Implement block selection/visual mode functionality.
+TBD
+## Add block manipulation actions (e.g., delete, yank, paste in normal/visual mode).
+TBD
+## Develop an options page for potential vim mode customization.
+TBD
+## Ensure context invalidation is handled gracefully (service worker termination/restart).
+TBD
+## Set up end-to-end tests for core vim navigation scenarios (as per TDD workflow).
+TBD
 
 # Project Structure
 - The code for the original Roam Toolkit can be found in the folder `roam-toolkit` in the root directory of the workspace.
