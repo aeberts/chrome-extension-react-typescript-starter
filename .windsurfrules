@@ -8,6 +8,21 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the re
 - Event-based architecture: Implement proper event listeners and message passing
 - Context invalidation: Handle potential service worker termination and restoration
 
+# Feature List
+- Implement core service worker logic for handling extension events.
+- Develop content scripts to interact with the Roam Research DOM.
+- Establish message passing between content scripts and the service worker.
+- Create a mechanism (e.g., popup button) to toggle vim mode on/off.
+- Implement state persistence using chrome.storage for vim mode enabled/disabled status.
+- Add basic cursor movement between blocks using vim keys (e.g., j, k in normal mode).
+- Implement returning to normal mode (e.g., via Escape key from other modes).
+- Implement insert mode activation and handling within blocks.
+- Implement block selection/visual mode functionality.
+- Add block manipulation actions (e.g., delete, yank, paste in normal/visual mode).
+- Develop an options page for potential vim mode customization.
+- Ensure context invalidation is handled gracefully (service worker termination/restart).
+- Set up end-to-end tests for core vim navigation scenarios (as per TDD workflow).
+
 # Project Structure
 - The code for the original Roam Toolkit can be found in the folder `roam-toolkit` in the root directory of the workspace.
 - The new Chrome extension code will be in the folder `chrome-ext-v3` in the root directory of the workspace.
@@ -49,7 +64,8 @@ Every time you choose to apply a rule(s), explicitly state the rule(s) in the re
 - Only work on one feature at a time.
 - Run tests with the command `bun run test`
 - Before creating a feature, first search the project to see if there are "end to end" tests already written for it.
-- If no tests has develop a test that reflects the desired functionality, anticipating its failure since the feature isn't implemented yet. Run the type checker `bun run check` to identify and resolve any type errors. Confirm with the user before proceeding.
+- If no tests has develop a test that reflects the desired functionality, anticipating its failure since the feature isn't implemented yet. 
+- Before building, run the type checker with `bun run check` to identify and resolve any type errors. Confirm that no type errors exist before moving forward and check in with the user before proceeding.
 - Write the simplest code necessary in TypeScript that will make the failing test pass.
 - Run the type checker with `bun run check` to make sure that there are no type errors.
 - Run the relevant test with `bun run test` until the test for this feature passes. Do not move forward with other features until all tests pass.

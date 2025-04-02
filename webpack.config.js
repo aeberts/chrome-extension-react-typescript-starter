@@ -3,7 +3,10 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: {
+    main: "./src/index.tsx", 
+    background: "./src/background/service-worker.ts", 
+  },
   mode: "production",
   module: {
     rules: [
@@ -24,20 +27,22 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: (pathData) => {
+      return pathData.chunk.name === 'background' ? 'background/service-worker.js' : 'bundle.js';
+    },
   },
   plugins: [
-    /* Necessary to use HTMLPlugin to inject the bundle into the index.html */
     new HTMLPlugin({
       template: "./public/index.html",
+      chunks: ['main'], 
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: "public",
-          to: "",
+          to: "", 
           globOptions: {
-            ignore: ["**/index.html"], // This line excludes index.html
+            ignore: ["**/index.html", "**/*.ts"],
           },
         },
       ],
